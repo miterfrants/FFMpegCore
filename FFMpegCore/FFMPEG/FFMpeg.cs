@@ -26,7 +26,7 @@ namespace FFMpegCore.FFMPEG
         /// <summary>
         ///     Intializes the FFMPEG encoder.
         /// </summary>
-        public FFMpeg(): base()
+        public FFMpeg() : base()
         {
             FFMpegHelper.RootExceptionCheck(FFMpegOptions.Options.RootDirectory);
 
@@ -468,8 +468,7 @@ namespace FFMpegCore.FFMPEG
         private bool RunProcess(ArgumentContainer container, FileInfo output)
         {
             var successState = true;
-
-            CreateProcess(this.ArgumentBuilder.BuildArguments(container), _ffmpegPath, true, rStandardError: true);
+            CreateProcess($"-ignore_editlist 1 {this.ArgumentBuilder.BuildArguments(container)}", _ffmpegPath, true, rStandardError: true);
 
             try
             {
